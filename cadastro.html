@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <style>
+         #background{
+        position: absolute;
+        height: 99%;
+        width: 100%;
+    }
+
+    .background{
+        position: absolute;
+        height: 99%;
+        width: 99%;
+    }
+
+    .form{
+        display: flex;
+        position: relative;
+        flex-flow: column;
+        flex-wrap: row wrap;
+        width: 250px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    </style>
+</head>
+<body style="background-color: orange;">
+    <div class="background">
+        <img src="images/background.jpg" id="background">
+    </div>
+    <div class="form">
+        <h2>Login</h2>
+    <form class="card">
+        <label for="usuario">Usuário:</label>
+        <input type="text" id="usuario" autocomplete="off">
+        <label for="password">Senha:</label>
+        <input type="password" id="password" autocomplete="off">
+        <br>
+        <br>
+        <button>Login</button>
+    </form>  
+    </div>
+
+</body>
+</html>
+
+ 
