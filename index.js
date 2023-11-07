@@ -21,21 +21,24 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Remova esta rota:
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+app.get('/cadastro', (req, res) => {
+  res.sendFile(__dirname + '/cadastro.html');
 });
 
-// Mantenha apenas a rota para o arquivo index.html
-app.get('/halloween', (req, res) => {
-  res.sendFile(__dirname + '/halloween.html');
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/login.html');
+});
+
+app.get('/prateleira', (req, res) => {
+  res.sendFile(__dirname + '/prateleira.html');
 });
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));
 
+
 // API endpoint for user registration
-app.post('/register', (req, res) => {
+app.post('/cadastro', (req, res) => {
   const { username, password } = req.body;
 
   // Insert the user's data into the 'users' table with plain text password
@@ -45,6 +48,7 @@ app.post('/register', (req, res) => {
     }
 
     res.json({ message: 'Cadastro realizado' });
+    res.redirect('/login');
   });
 });
 
@@ -67,7 +71,7 @@ app.post('/login', (req, res) => {
     req.session.userId = results[0].id; // Armazene o ID do usuário na sessão
 
     // Redirecione o usuário para a página halloween.html
-    res.redirect('/halloween');
+    res.redirect('/prateleira');
   });
 });
 
@@ -99,6 +103,7 @@ app.post('/addPoints', (req, res) => {
       }
 
       res.json({ message: 'Pontos adicionados com sucesso' });
+      res.redirect('/prateleira');
     }
   );
 });
