@@ -3,36 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
+    <style>
+         #background{
+        position: absolute;
+        height: 99%;
+        width: 100%;
+    }
+
+    .background{
+        position: absolute;
+        height: 99%;
+        width: 99%;
+    }
+
+    .form{
+        display: flex;
+        position: relative;
+        flex-flow: column;
+        flex-wrap: row wrap;
+        width: 250px;
+        align-items: center;
+        justify-content: center;
+        background-color: orange;
+        height: 300px;
+        width: 400px;
+        border-radius: 20%;
+    }
+
+    .card{
+        border-color: black;
+        height: 100px;
+        width: 200px;
+    }
+
+    </style>
 </head>
-<body>
-    
+<body style="background-color: black;">
+    <div class="background">
+        <img src="https://marketplace.canva.com/EAFrWiFpof4/1/0/800w/canva-orange-spooky-halloween-desktop-wallpaper-MsgwCJbTGYQ.jpg" id="background">
+    </div>
+    <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="background-color: orange; ">
+            <p>Bem vindo ao mantimentos store! Preeencha os campos abaixo para realizar seu login e clique no botão......</p>
+        </div>
+    <div class="form">
+        <h2>Login</h2>
+        <form class="card" action="/login" method="POST">
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="username" autocomplete="off">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" autocomplete="off">
+            <br>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </form>  
+    </div>
+</div>
 </body>
 </html>
 
-<title>Login</title>
-<head>
-<body>
-<div id="login">
-<form class="card">
-<div class="card-header">
-<h2>Login</h2>
-</div>
-<div class="card-content-area">
-<label for="usuario">Usuario</label>
-<input type="text" id="usuario" autocomplete="off">
-</div>
-<div class="card-content-area">
-<lebel for="password">Senha</lebel>
-<input type="password" id="password" autocomplete="off">
-</div>
-<div class="card-footer">
-<button>Login</button>
-<a href="#" class="recuperar_senha">Esqueceu a senha?</a>
  
-</form>
-</div>
-
-
-</body>
-</html>
