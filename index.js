@@ -47,7 +47,6 @@ app.post('/cadastro', (req, res) => {
       return res.status(500).json({ message: 'Erro no servidor' });
     }
 
-    res.json({ message: 'Cadastro realizado' });
     res.redirect('/login');
   });
 });
@@ -65,10 +64,6 @@ app.post('/login', (req, res) => {
     if (results.length === 0) {
       return res.status(401).json({ message: 'Credenciais inválidas' });
     }
-
-    // Autenticar o usuário e armazenar os detalhes da sessão
-    req.session.authenticated = true;
-    req.session.userId = results[0].id; // Armazene o ID do usuário na sessão
 
     // Redirecione o usuário para a página halloween.html
     res.redirect('/prateleira');
