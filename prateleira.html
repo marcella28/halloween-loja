@@ -176,6 +176,15 @@
         right: 540px ;
     }
 
+    #m22{
+        height: 110px;
+        width: 110px;
+        cursor: pointer;
+        position: relative;
+        top: 255px;
+        right: 540px ;
+    }
+
     #zombie{
         cursor: pointer;
         position: relative;
@@ -225,28 +234,38 @@
 
     }
 
+    #um, #dois, #tres, #quatro,#cinco {
+        height: 90px;
+        width: 50px;
+        display: none;
+    }
+
     .nomeuser{
         position: relative;
         display: flex;
-         background-color: #ffffff; 
-         border-style: groove ; 
-         width: 900px; 
-         height: 80px;
+        background-color: rgb(202, 113, 30); 
+         border-style: groove ;
+         border-width: 5px;
+         border-color: rgb(235, 135, 88); 
+         height: 100px;
          top: 80px ;
          left: 80px;
+         width: auto;
 
     }
 
     .placar{
         position: relative;
         display: flex;
-         background-color: #ffffff; 
-         border-style: groove ; 
-         width: 300px; 
+         background-color: rgb(202, 113, 30); 
+         border-style: groove ;
+         border-width: 5px;
+         border-color: rgb(235, 135, 88); 
+         width: auto; 
          height: 300px;
          flex-flow: column;
          top: 80px ;
-         right: 80px;
+         right: 450px;
     }
 
 
@@ -255,71 +274,89 @@
 </head>
 <body style="background-color: black">
     <div class="background">
-        <img src="images/background.jpg" id="background">
+        <img src="https://i.postimg.cc/fTkKghpJ/background.jpg" id="background">
     </div>
 
-<div class="tudo" style="display: flex; flex-flow: row;">
+<div class="tudo" style="display: flex; width: 295px;">
 <div class="nomeuser">
+    <div style="padding: 6px; align-items: center; justify-content: center; display: flex; flex-flow: column;">
     <br>
     <p>Nome usuário:</p><br>
-    <p id="user">oi</p><br>
+    <p id="user"></p>
     <br>
-
+    </div>
 </div>
 
 <div class="2">
 
         <div class="prateleira1">
-            <img src="images/prateleira.png" id="prateleira1">
+            <img src="https://s4.aconvert.com/convert/p3r68-cdx67/akb5k-qjthx.png" id="prateleira1">
         </div>
 
         <div class="monstros">
-            <img src="images/zombie.PNG" id="zombie">
-            <img src="images/esp.PNG" id="esp">
-            <img src="images/frank.PNG" id="frank">
-            <img src="images/lobo.png" id="lobo">
-            <img src="images/morte.png" id="morte">
+            <img src="https://s4.aconvert.com/convert/p3r68-cdx67/atk87-nmv6w.png" id="zombie" class="produto">
+            <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ajqry-rufl4.png" id="esp" class="produto">
+            <img src="https://s4.aconvert.com/convert/p3r68-cdx67/aetxw-suats.png" id="frank" class="produto">
+            <img src="https://s4.aconvert.com/convert/p3r68-cdx67/av2v1-3w81o.png" id="lobo" class="produto">
+            <img src="https://s4.aconvert.com/convert/p3r68-cdx67/au29a-1ckhc.png" id="morte" class="produto">
         </div>
 
     <div class="mantimentos">
-        <img src="images/m1.PNG" id="m1">
-        <img src="images/m2.PNG" id="m2">
-        <img src="images/m3.PNG" id="m3">
-        <img src="images/m4.PNG" id="m4">
-        <img src="images/m5.PNG" id="m5" >
-        <img src="images/m6.PNG" id="m6">
-        <img src="images/m7.PNG" id="m7" >
-        <img src="images/m8.PNG" id="m8">
-        <img src="images/m9.PNG" id="m9">
-        <img src="images/m10.PNG" id="m10">
-        <img src="images/m11.PNG" id="m11">
-        <img src="images/m12.PNG" id="m12">
-        <img src="images/m13.PNG" id="m13">
-        <img src="images/m14.PNG" id="m14">
-        <img src="images/m15.PNG" id="m15">
-        <img src="images/m16.PNG" id="m16">
-        <img src="images/m17.PNG" id="m17">
-        <img src="images/m18.PNG" id="m18">
-        <img src="images/m19.PNG" id="m19">
-        <img src="images/m20.PNG" id="m20">
-        <img src="images/m21.PNG" id="m21">
-
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/a62ea-gi5s7.png" id="m1">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/aegff-vofpd.png" id="m2">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/akwv7-u3sez.png" id="m3">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ax2rw-up96b.png" id="m4">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ahw3r-fxpgf.png" id="m5" >
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ahw3r-fxpgf.png" id="m6">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ayflx-yikm1.png" id="m7" >
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/a8rkz-yq5xn.png" id="m8">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/aaw9e-8vdp3.png" id="m9">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/a3tkm-8wpu8.png" id="m10">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/a4oij-hj419.png" id="m11">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/al6ux-qdpkc.png" id="m12">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/aqxth-ynxf7.png" id="m13">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/alue9-64j5f.png" id="m14">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/afixq-009cv.png" id="m15">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ayzxk-6a2a5.png" id="m16">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/a68k4-u5f4q.png" id="m17">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ajlgt-bvjyv.png" id="m18">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/adump-htzf8.png" id="m19">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ayvom-o8xi9.png" id="m20">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/az2fd-sryqx.png" id="m21">
+        <img src="images/m22.png" id="m22">
+        <img src="images/m23.png" id="m23">
+        <img src="images/m24.png" id="m24">
+        <img src="images/m25.png" id="m25">
+        <img src="images/m26.png" id="m26">
+        <img src="images/m27.png" id="m27">
+        <img src="images/m28.png" id="m28">
     </div>
 
 </div>
 
 
 <div class="placar">
-    <h2>Placar:</h2>
-    <br>
-    <div class="display:flex, flex-flow:row,">
-        <h3>Pontos:</h3>
-        <p id="pontos">1000</p>
+    <div style="padding: 10px;">
+        <h2>Placar:</h2>
+    <table border="1" style="background-color:antiquewhite;">
+        <thead>
+            <td>Pontos</td>
+            <td>Cashback</td>
+        </thead>
+        <tr>
+            <td id="pontos"></td>
+            <td id="cashback"></td>
+        </tr>
+    </table>
+
+    <div style="display:flex; flex-flow: row; width: 300px; padding: 50px; gap: 20px;">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/atk87-nmv6w.png" id="um" >
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/ajqry-rufl4.png"  id="dois">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/aetxw-suats.png"  id="tres">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/av2v1-3w81o.png"  id="quatro">
+        <img src="https://s4.aconvert.com/convert/p3r68-cdx67/au29a-1ckhc.png"  id="cinco">
     </div>
-<br>
-    <div class="display:flex, flex-flow:row">
-        <h3>Cashback (%):</h3>
-        <p id="cashback">40%</p>
+
     </div>
 
 </div>
@@ -327,5 +364,45 @@
 </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const imagens = document.querySelectorAll('.produto');
+      const pontosElement = document.getElementById('pontos');
+      const cashbackElement = document.getElementById('cashback');
+      const userElement = document.getElementById('user');
+  
+      imagens.forEach(imagem => {
+        imagem.addEventListener('click', function () {
+          const imageId = this.id;
+  
+          // Envie uma solicitação ao servidor quando a imagem for clicada
+          fetch('/addPoints', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ imageId }),
+          })
+          .then(response => response.json())
+          .then(data => {
+            console.log(data); // Exiba a resposta do servidor no console
+  
+            // Atualize o nome do usuário
+            userElement.textContent = data.username;
+  
+            // Atualize os elementos HTML com as informações dos pontos e cashback
+            pontosElement.textContent = data.points;
+            cashbackElement.textContent = data.cashback.toFixed(2);
+  
+            // Esconda a imagem após clicar (opcional)
+            this.style.display = 'none';
+          })
+          .catch(error => console.error('Erro ao adicionar pontos:', error));
+        });
+      });
+    });
+  </script>
+  
 </body>
 </html>
+

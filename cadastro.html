@@ -41,7 +41,7 @@
 </head>
 <body style="background-color: black;">
     <div class="background">
-        <img src="images/background.jpg" id="background">
+        <img src="https://i.postimg.cc/fTkKghpJ/background.jpg" id="background">
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
         <div style="background-color: orange; ">
@@ -49,15 +49,15 @@
         </div>
     <div class="form">
         <h2>Cadastro</h2>
-    <form class="card" action="/cadastro" method="POST">
-        <label for="usuario">Usuário:</label>
-        <input type="text" id="usuario" autocomplete="off">
-        <label for="password">Senha:</label>
-        <input type="password" id="password" autocomplete="off">
-        <br>
-        <br>
-        <button>Cadastro</button>
-    </form>  
+        <form class="card" action="/cadastro" method="POST">
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" name="username" autocomplete="off">
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" autocomplete="off">
+            <br>
+            <br>
+            <button type="submit">Cadastro</button>
+        </form>
     </div>
 </div>
 </body>
