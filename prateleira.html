@@ -16,13 +16,6 @@
         width: 100%;
     }
 
-    .prateleiras{
-        position: relative;
-        display: flex;
-        flex-flow: row;
-        gap: 50px;
-    }
-
     .mantimentos{
         position: relative;
         display: flex;
@@ -34,10 +27,8 @@
         position: absolute;
         display: flex;
         justify-content: center;
-        margin-left: 30%;
         height: 700px;
         width: 500px;
-        margin-top: 60px;
     }
 
     #m1, #m2, #m3, #m4, #m5, #m6,  #m7,  #m8,  #m9,  #m10, #m12, #m15, #m16{
@@ -127,7 +118,61 @@
         cursor: pointer;
         position: relative;
         top: 535px;
-        left: 30px ;
+        right: 120px ;
+    }
+
+    #m15{
+        top: 145px;
+        right: 230px ;
+    }
+
+    #m16{
+        top: 140px;
+        right: 240px ;
+    }
+
+    #m17{
+        height: 100px;
+        width: 90px;
+        cursor: pointer;
+        position: relative;
+        top: 140px;
+        right: 120px ;
+    }
+
+    #m18{
+        height: 90px;
+        width: 90px;
+        cursor: pointer;
+        position: relative;
+        top: 279px;
+        right: 280px ;
+    }
+
+    #m19{
+        height: 70px;
+        width: 70px;
+        cursor: pointer;
+        position: relative;
+        top: 285px;
+        right: 399px ;
+    }
+    #m20{
+        height: 120px;
+        width: 120px;
+        cursor: pointer;
+        position: relative;
+        top: 499px;
+        right: 480px ;
+    }
+
+    #m21{
+        height: 110px;
+        width: 110px;
+        cursor: pointer;
+        position: relative;
+        top: 255px;
+        right: 540px ;
     }
 
     #zombie{
@@ -158,6 +203,46 @@
         width: 50px;
 
     }
+
+    #lobo{
+        cursor: pointer;
+        position: relative;
+        top: 120px;
+        left: 560px ;
+        height: 90px;
+        width: 70px;
+
+    }
+
+    #morte{
+        cursor: pointer;
+        position: relative;
+        top: 490px;
+        left: 420px ;
+        height: 90px;
+        width: 70px;
+
+    }
+
+    .nomeuser{
+        position: relative;
+        display: flex;
+         background-color: #ffffff; 
+         border-style: groove ; 
+         width: 900px; 
+         height: 80px;
+    }
+
+    .placar{
+        position: relative;
+        display: flex;
+         background-color: #ffffff; 
+         border-style: groove ; 
+         width: 300px; 
+         height: 300px;
+    }
+
+
     </style>
 
     <script>
@@ -172,6 +257,12 @@
         <img src="images/background.jpg" id="background">
     </div>
 
+<div class="tudo" style="display: flex; flex-flow: row;">
+<div class="nomeuser">
+    <p>Nome usuário</p>
+</div>
+
+<div class="2">
 
         <div class="prateleira1">
             <img src="images/prateleira.png" id="prateleira1">
@@ -181,6 +272,8 @@
             <img src="images/zombie.PNG" id="zombie">
             <img src="images/esp.PNG" id="esp">
             <img src="images/frank.PNG" id="frank">
+            <img src="images/lobo.png" id="lobo">
+            <img src="images/morte.png" id="morte">
         </div>
 
     <div class="mantimentos">
@@ -188,18 +281,35 @@
         <img src="images/m2.PNG" id="m2">
         <img src="images/m3.PNG" id="m3">
         <img src="images/m4.PNG" id="m4">
-        <img src="images/m5.PNG" id="m5" onclick="zombie()">
+        <img src="images/m5.PNG" id="m5" >
         <img src="images/m6.PNG" id="m6">
-        <img src="images/m7.PNG" id="m7" onclick="frank()">
+        <img src="images/m7.PNG" id="m7" >
         <img src="images/m8.PNG" id="m8">
         <img src="images/m9.PNG" id="m9">
-        <img src="images/m10.PNG" id="m10" onclick="esp()" >
+        <img src="images/m10.PNG" id="m10">
         <img src="images/m11.PNG" id="m11">
         <img src="images/m12.PNG" id="m12">
         <img src="images/m13.PNG" id="m13">
         <img src="images/m14.PNG" id="m14">
         <img src="images/m15.PNG" id="m15">
         <img src="images/m16.PNG" id="m16">
+        <img src="images/m17.PNG" id="m17">
+        <img src="images/m18.PNG" id="m18">
+        <img src="images/m19.PNG" id="m19">
+        <img src="images/m20.PNG" id="m20">
+        <img src="images/m21.PNG" id="m21">
+
     </div>
+
+</div>
+
+
+<div class="placar">
+    <p>Placar</p>
+</div>
+
+</div>
+</div>
+
 </body>
 </html>
