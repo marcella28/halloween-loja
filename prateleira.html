@@ -19,8 +19,6 @@
     .mantimentos{
         position: relative;
         display: flex;
-        flex-flow: row;
- 
     }
 
     #prateleira1{
@@ -29,6 +27,9 @@
         justify-content: center;
         height: 700px;
         width: 500px;
+        margin-top: 60px;
+        margin-left: 455px;
+
     }
 
     #m1, #m2, #m3, #m4, #m5, #m6,  #m7,  #m8,  #m9,  #m10, #m12, #m15, #m16{
@@ -231,6 +232,9 @@
          border-style: groove ; 
          width: 900px; 
          height: 80px;
+         top: 80px ;
+         left: 80px;
+
     }
 
     .placar{
@@ -240,17 +244,14 @@
          border-style: groove ; 
          width: 300px; 
          height: 300px;
+         flex-flow: column;
+         top: 80px ;
+         right: 80px;
     }
 
 
     </style>
 
-    <script>
-        function zombie(){
-           const zumbi = document.getElementById('zombie');
-           
-        }
-    </script>
 </head>
 <body style="background-color: black">
     <div class="background">
@@ -259,7 +260,11 @@
 
 <div class="tudo" style="display: flex; flex-flow: row;">
 <div class="nomeuser">
-    <p>Nome usuário</p>
+    <br>
+    <p>Nome usuário:</p><br>
+    <p id="user">oi</p><br>
+    <br>
+
 </div>
 
 <div class="2">
@@ -305,7 +310,18 @@
 
 
 <div class="placar">
-    <p>Placar</p>
+    <h2>Placar:</h2>
+    <br>
+    <div class="display:flex, flex-flow:row,">
+        <h3>Pontos:</h3>
+        <p id="pontos">1000</p>
+    </div>
+<br>
+    <div class="display:flex, flex-flow:row">
+        <h3>Cashback (%):</h3>
+        <p id="cashback">40%</p>
+    </div>
+
 </div>
 
 </div>
