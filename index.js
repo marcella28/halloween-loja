@@ -42,7 +42,7 @@ app.post('/cadastro', (req, res) => {
   const { username, password } = req.body;
 
   // Insert the user's data into the 'users' table with plain text password
-  connection.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, password], (err, results) => {
+  connection.query('INSERT INTO users (username, password, points) VALUES (?, ?, ?)', [username, password, 0], (err, results) => {
     if (err) {
       return res.status(500).json({ message: 'Erro no servidor' });
     }
@@ -51,31 +51,7 @@ app.post('/cadastro', (req, res) => {
   });
 });
 
-// API endpoint for user login
-app.post('/login', (req, res) => {
-  const { username, password } = req.body;
-
-  // Retrieve user data from the 'users' table
-  connection.query('SELECT * FROM users WHERE username = ? AND password = ?', [username, password], (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: 'Erro no servidor' });
-    }
-
-    if (results.length === 0) {
-      return res.status(401).json({ message: 'Credenciais inválidas' });
-    }
-
-    // Autenticar o usuário e armazenar os detalhes da sessão
-    req.session.authenticated = true;
-    req.session.userId = results[0].id;
-    req.session.username = results[0].username; // Adicione o nome do usuário à sessão
-
-    // Redirecione o usuário para a página halloween.html
-    res.redirect('/prateleira');
-  });
-});
-
-// API endpoint to update user's points when they find a Halloween product
+// API endpoint para atualizar os pontos do usuário quando eles encontram um produto de Halloween
 app.post('/addPoints', (req, res) => {
   if (!req.session.authenticated) {
     // Se não estiver autenticado, redirecione para a página de login
@@ -86,30 +62,30 @@ app.post('/addPoints', (req, res) => {
   const userId = req.session.userId;
   const username = req.session.username; // Obtém o nome do usuário da sessão
 
-  // Verifique se a imagem clicada é válida (verifique se o imageId existe em sua lista de imagens válidas)
-  const validImageIds = [1, 2, 3]; // Exemplo: IDs de imagens válidas
+  // Verifique se o imageId é válido (verifique se o imageId existe em sua lista de IDs de imagens válidas)
+  const validImageIds = ['zombie', 'esp', 'frank', 'lobo', 'morte']; // Exemplo: IDs de imagens válidas
   if (!validImageIds.includes(imageId)) {
     return res.status(400).json({ message: 'ID de imagem inválido' });
   }
 
   const pointsToAdd = 10; // Defina a quantidade de pontos a serem adicionados
 
-  // Atualize os pontos na tabela 'cashback' para o usuário
+  // Atualize os pontos na tabela 'users' para o usuário
   connection.query(
-    'INSERT INTO cashback (usuario_id, points) VALUES (?, ?) ON DUPLICATE KEY UPDATE points = points + ?',
-    [userId, pointsToAdd, pointsToAdd],
+    'UPDATE users SET pontos = pontos + ? WHERE id = ?',
+    [pointsToAdd, userId],
     (err, updateResults) => {
       if (err) {
         return res.status(500).json({ message: 'Erro ao adicionar pontos' });
       }
 
       // Obtenha os pontos e cashback atualizados
-      connection.query('SELECT points FROM cashback WHERE usuario_id = ?', [userId], (err, pointsResults) => {
+      connection.query('SELECT pontos FROM users WHERE id = ?', [userId], (err, pointsResults) => {
         if (err) {
           return res.status(500).json({ message: 'Erro ao obter pontos' });
         }
 
-        const points = pointsResults[0] ? pointsResults[0].points : 0;
+        const points = pointsResults[0] ? pointsResults[0].pontos : 0;
 
         // Obtenha o cashback (exemplo: 4% dos pontos)
         const cashbackPercentage = 4;
@@ -133,7 +109,8 @@ app.post('/addPoints', (req, res) => {
 
 
 
+
 const port = 3006;
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://172.16.30.107:${port}`);
+  console.log(`Servidor rodando em http://172.16.31.26:${port}/prateleira`);
 });
