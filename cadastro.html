@@ -17,7 +17,7 @@
         width: 99%;
     }
 
-    .form{
+    #form{
         display: flex;
         position: relative;
         flex-flow: column;
@@ -29,6 +29,7 @@
         height: 300px;
         width: 400px;
         border-radius: 20%;
+        margin-top: 50%;
     }
 
     .card{
@@ -43,11 +44,10 @@
     <div class="background">
         <img src="https://i.postimg.cc/fTkKghpJ/background.jpg" id="background">
     </div>
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <div style="background-color: orange; ">
-            <p>Bem vindo ao mantimentos store! Preeencha os campos abaixo para realizar seu cadastro e clique no botão......</p>
-        </div>
-        <div class="form">
+    <div id="mensagem">
+<p>Bem vindo</p>
+    </div>
+        <div id="form">
             <h2>Cadastro</h2>
             <form class="card" action="/cadastro" method="POST">
                 <label for="usuario">Usuário:</label>
@@ -58,8 +58,7 @@
                 <br>
                 <button type="submit">Cadastro</button>
             </form>
-    </div>
-</div>
+        </div>
 </body>
 </html>
 
