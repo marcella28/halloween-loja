@@ -313,8 +313,8 @@
     #zombie{
         cursor: pointer;
         position: relative;
-        top: 620px;
-        left: 780px ;
+        top: 580px;
+        left: 799px ;
         height: 90px;
         width: 50px;
     }
@@ -322,8 +322,8 @@
     #frank{
         cursor: pointer;
         position: relative;
-        top: 335px;
-        left: 480px ;
+        top: 320px;
+        left: 460px ;
         height: 90px;
         width: 50px;
 
@@ -332,7 +332,7 @@
     #esp{
         cursor: pointer;
         position: relative;
-        top: 240px;
+        top: 200px;
         left: 720px ;
         height: 90px;
         width: 50px;
@@ -342,7 +342,7 @@
     #lobo{
         cursor: pointer;
         position: relative;
-        top: 120px;
+        top: 70px;
         left: 560px ;
         height: 90px;
         width: 70px;
@@ -352,7 +352,7 @@
     #morte{
         cursor: pointer;
         position: relative;
-        top: 490px;
+        top: 440px;
         left: 420px ;
         height: 90px;
         width: 70px;
@@ -362,7 +362,7 @@
     #um, #dois, #tres, #quatro,#cinco {
         height: 90px;
         width: 50px;
-        display: none;
+        display: block;
     }
 
     .nomeuser{
@@ -393,8 +393,143 @@
          right: 1690px;
     }
 
+img{
+    opacity: 1.0;
+            transition: opacity 0.5s ease;
+            cursor: pointer; 
+}
 
+img.diminuida{
+    opacity: 0.7;
+}
     </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Função para obter o nome de usuário após o login
+        function getUsername() {
+            // Aqui, você deve fazer uma solicitação ao servidor para obter o nome de usuário
+            // Isso pode ser feito usando fetch() ou outra biblioteca de requisição AJAX
+
+            // Exemplo:
+            fetch('/getUsername', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // Adicione quaisquer cabeçalhos necessários para autenticação, etc.
+                },
+                // Adicione quaisquer parâmetros necessários para a solicitação
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Atualize o nome do usuário
+                document.getElementById('usernamePlaceholder').textContent = data.username;
+            })
+            .catch(error => console.error('Erro ao obter nome de usuário:', error));
+        }
+
+        // Chamada à função para obter o nome de usuário após o carregamento da página
+        getUsername();
+
+        // Função para atualizar o placar localmente e exibi-lo
+        function updateScoreLocally(points) {
+            // Adiciona ou atualiza os pontos no localStorage
+            localStorage.setItem('userPoints', points);
+
+            // Exibe os pontos nos elementos HTML
+            document.getElementById('pontos').textContent = points;
+        }
+
+        function onMonsterClick(imageId) {
+            fetch('/addPoints', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ imageId }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+
+                    // Atualiza o nome do usuário
+                    document.getElementById('usernamePlaceholder').textContent = data.username;
+
+                    // Adiciona 10 pontos localmente
+                    const newPoints = parseInt(localStorage.getItem('userPoints') || 0) + 10;
+                    updateScoreLocally(newPoints);
+
+                    // Atualiza os elementos HTML com as informações dos pontos e cashback
+                    document.getElementById('cashback').textContent = data.cashback.toFixed(2);
+                })
+                .catch(error => console.error('Erro ao adicionar pontos:', error));
+        }
+
+            function getPointsAndCashback() {
+                fetch('/getPointsAndCashback', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Chama a função para atualizar o placar localmente
+                        updateScoreLocally(data.points);
+
+                        // Atualiza os elementos HTML com as informações dos pontos e cashback
+                        document.getElementById('cashback').textContent = data.cashback.toFixed(2);
+                    })
+                    .catch(error => console.error('Erro ao obter pontos e cashback:', error));
+            }
+
+            // Chama a função para obter pontos e cashback após o carregamento da página
+            getPointsAndCashback();
+        });
+
+
+        function diminuirOpacidade(element) {
+            element.classList.add('diminuida');
+            setTimeout(function () {
+                element.classList.remove('diminuida');
+            }, 500); // 500 milissegundos (0.5 segundos)
+
+            
+        }
+
+
+        function exibirImagem(id) {
+            
+    var imagem = document.getElementById(id);
+
+    // Verifica se a imagem está visível ou não
+    if (imagem.style.display === "none" || imagem.style.display === "") {
+        // Se estiver oculta, exibe
+        imagem.style.display = "block";
+    } else {
+        // Se estiver visível, oculta
+        imagem.style.display = "none";
+    }
+}
+function adicionarPontos() {
+    // Verifica se há algum valor armazenado para os pontos
+    var pontosArmazenados = localStorage.getItem('pontos');
+    
+    // Se não houver pontos armazenados, define o valor inicial como 0
+    var pontosAtuais = pontosArmazenados ? parseInt(pontosArmazenados) : 0;
+    
+    // Adiciona 10 pontos
+    pontosAtuais += 10;
+
+    // Atualiza o valor dos pontos no HTML
+    document.getElementById('pontos').innerText = pontosAtuais;
+
+    // Armazena o novo valor no Local Storage
+    localStorage.setItem('pontos', pontosAtuais.toString());
+  }
+
+
+</script>
 
 </head>
 <body style="background-color: black">
@@ -405,65 +540,70 @@
 <div class="tudo" style="display: flex; width: 295px;">
 <div class="nomeuser">
     <div style="padding: 6px; align-items: center; justify-content: center; display: flex; flex-flow: row;">
-    <br>
-    <p>Nome usuário:</p><br>
-    <p id="user"></p>
+        <br>
+        <p id="user">Nome do Usuário: <span id="usernamePlaceholder"></span></p>
+        <br>
     <br>
     </div>
 </div>
 
 <div class="2">
+<div style="background-color: rgb(202, 113, 30); ; width: 500px; height: 100px; position: relative; justify-content: center; align-items: center; top: 10px; left: 390px;">
+    <div style="display: flex; justify-content: center; align-items: center; padding: 10px; background-color: orange" >
+    <p>Encontre os monstrinhos de halloween escondidos em nossas prateleiras e ganhe pontos com isso! Os ponto serão convertidos em cashback depois! e então, doçuras ou travessuras? </p>
+    </div>
 
+</div>
         <div class="prateleira1">
             <img src="https://i.postimg.cc/Fs1Vm7GX/prateleira.png" id="prateleira1">
         </div>
 
         <div class="monstros">
-            <img src="https://i.postimg.cc/5NGqtbkY/zombie.png" id="zombie" class="produto">
-            <img src="https://i.postimg.cc/Twm5TN3Z/esp.png" id="esp" class="produto">
-            <img src="https://i.postimg.cc/050rZwMd/frank.png" id="frank" class="produto">
-            <img src="https://i.postimg.cc/rmvGJtDL/lobo.png" id="lobo" class="produto">
-            <img src="https://i.postimg.cc/ryfNvS19/morte.png" id="morte" class="produto">
+            <img src="https://i.postimg.cc/5NGqtbkY/zombie.png" id="zombie" onclick=" diminuirOpacidade(this); adicionarPontos(); exibirImagem('um'); onMonsterClick('zombie');">
+            <img src="https://i.postimg.cc/Twm5TN3Z/esp.png" id="esp" onclick=" diminuirOpacidade(this); adicionarPontos(); exibirImagem('dois'); onMonsterClick('esp');">
+            <img src="https://i.postimg.cc/050rZwMd/frank.png" id="frank" onclick=" diminuirOpacidade(this); adicionarPontos(); exibirImagem('tres'); onMonsterClick('frank');" >
+            <img src="https://i.postimg.cc/rmvGJtDL/lobo.png" id="lobo" onclick="diminuirOpacidade(this); adicionarPontos(); exibirImagem('quatro'); onMonsterClick('lobo');">
+            <img src="https://i.postimg.cc/ryfNvS19/morte.png" id="morte" onclick=" diminuirOpacidade(this); adicionarPontos(); exibirImagem('cinco'); onMonsterClick('morte');" >
         </div>
 
     <div class="mantimentos">
-        <img src="https://i.postimg.cc/k52R2pDj/m1.png" id="m1">
-        <img src="https://i.postimg.cc/wTYr0Kpm/m2.png" id="m2">
-        <img src="https://i.postimg.cc/mZCXcdH2/m3.png" id="m3">
-        <img src="https://i.postimg.cc/vBLny64M/m4.png" id="m4">
-        <img src="https://i.postimg.cc/Gh947fxb/m5.png" id="m5" >
-        <img src="https://i.postimg.cc/d1HqGqXr/m6.png" id="m6">
-        <img src="https://i.postimg.cc/ryDdgbJM/m7.png" id="m7" >
-        <img src="https://i.postimg.cc/mDzbNxGn/m8.png" id="m8">
-        <img src="https://i.postimg.cc/nhFpS9JB/m9.png" id="m9">
-        <img src="https://i.postimg.cc/T3NMkkQv/m10.png" id="m10">
-        <img src="https://i.postimg.cc/4ygrKj4V/m11.png" id="m11">
-        <img src="https://i.postimg.cc/1RrdCC57/m12.png" id="m12">
-        <img src="https://i.postimg.cc/QMcmBCFY/m13.png" id="m13">
-        <img src="https://i.postimg.cc/yYWTmvJZ/m14.png" id="m14">
-        <img src="https://i.postimg.cc/63jvTxf1/m15.png" id="m15">
-        <img src="https://i.postimg.cc/d0n7Scpt/m16.png" id="m16">
-        <img src="https://i.postimg.cc/mrdY19bw/m17.png" id="m17">
-        <img src="https://i.postimg.cc/y63mWW2m/m18.png" id="m18">
-        <img src="https://i.postimg.cc/FsQLRpyv/m19.png" id="m19">
-        <img src="https://i.postimg.cc/02xzxQv2/m20.png" id="m20">
-        <img src="https://i.postimg.cc/zBCqPCVw/m21.png" id="m21">
-        <img src="https://i.postimg.cc/h4wfzrVv/m22.png" id="m22">
-        <img src="https://i.postimg.cc/rpPK1C7f/m23.png" id="m23">
-        <img src="https://i.postimg.cc/QxfsKN2b/m24.png" id="m24">
-        <img src="https://i.postimg.cc/T12FTg3X/m25.png" id="m25">
-        <img src="https://i.postimg.cc/nLtdHB3w/m26.png" id="m26">
-        <img src="https://i.postimg.cc/0jJmMHQG/m27.png" id="m27">
-        <img src="https://i.postimg.cc/mD3kvft5/m28.png" id="m28">
-        <img src="https://i.postimg.cc/C5xwJYKC/m29.png" id="m29">
-        <img src="https://i.postimg.cc/3JyTwt0w/m30.png" id="m30">
-        <img src="https://i.postimg.cc/ryPB75Z2/m31.png" id="m31">
-        <img src="https://i.postimg.cc/9Xs70Ng8/m32.png" id="m32">
-        <img src="https://i.postimg.cc/B6vzVvxv/m33.png" id="m33">
-        <img src="https://i.postimg.cc/JnvW3X98/m34.png" id="m34">
-        <img src="https://i.postimg.cc/BZP3ShKn/m35.png" id="m35">
-        <img src="https://i.postimg.cc/7Ygy7fXv/m36.png" id="m36">
-        <img src="https://i.postimg.cc/hj6fJfsz/m37.png" id="m37">
+        <img src="https://i.postimg.cc/k52R2pDj/m1.png" id="m1" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/wTYr0Kpm/m2.png" id="m2" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/mZCXcdH2/m3.png" id="m3" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/vBLny64M/m4.png" id="m4" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/Gh947fxb/m5.png" id="m5"  onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/d1HqGqXr/m6.png" id="m6" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/ryDdgbJM/m7.png" id="m7" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/mDzbNxGn/m8.png" id="m8" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/nhFpS9JB/m9.png" id="m9" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/T3NMkkQv/m10.png" id="m10" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/4ygrKj4V/m11.png" id="m11" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/1RrdCC57/m12.png" id="m12" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/QMcmBCFY/m13.png" id="m13" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/yYWTmvJZ/m14.png" id="m14" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/63jvTxf1/m15.png" id="m15" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/d0n7Scpt/m16.png" id="m16" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/mrdY19bw/m17.png" id="m17" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/y63mWW2m/m18.png" id="m18" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/FsQLRpyv/m19.png" id="m19" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/02xzxQv2/m20.png" id="m20" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/zBCqPCVw/m21.png" id="m21" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/h4wfzrVv/m22.png" id="m22" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/rpPK1C7f/m23.png" id="m23" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/QxfsKN2b/m24.png" id="m24" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/T12FTg3X/m25.png" id="m25" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/nLtdHB3w/m26.png" id="m26" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/0jJmMHQG/m27.png" id="m27" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/mD3kvft5/m28.png" id="m28" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/C5xwJYKC/m29.png" id="m29" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/3JyTwt0w/m30.png" id="m30" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/ryPB75Z2/m31.png" id="m31" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/9Xs70Ng8/m32.png" id="m32" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/B6vzVvxv/m33.png" id="m33" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/JnvW3X98/m34.png" id="m34" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/BZP3ShKn/m35.png" id="m35" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/7Ygy7fXv/m36.png" id="m36" onclick="diminuirOpacidade(this)">
+        <img src="https://i.postimg.cc/hj6fJfsz/m37.png" id="m37" onclick="diminuirOpacidade(this)">
 
     </div>
 
@@ -498,46 +638,8 @@
 
 </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const imagens = document.querySelectorAll('.produto');
-      const pontosElement = document.getElementById('pontos');
-      const cashbackElement = document.getElementById('cashback');
-      const userElement = document.getElementById('user');
-
-      imagens.forEach(imagem => {
-        imagem.addEventListener('click', function () {
-          const imageId = this.id;
-
-          // Envie uma solicitação ao servidor quando a imagem for clicada
-          fetch('/addPoints', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ imageId }),
-          })
-            .then(response => response.json())
-            .then(data => {
-              console.log(data); // Exiba a resposta do servidor no console
-
-              // Atualize o nome do usuário
-              userElement.textContent = data.username;
-
-              // Atualize os elementos HTML com as informações dos pontos e cashback
-              pontosElement.textContent = data.points;
-              cashbackElement.textContent = data.cashback.toFixed(2);
-
-              // Esconda a imagem após clicar (opcional)
-              this.style.display = 'none';
-            })
-            .catch(error => console.error('Erro ao adicionar pontos:', error));
-        });
-      });
-    });
-  </script>
   
+
 </body>
 </html>
 

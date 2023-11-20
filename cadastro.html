@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,25 +17,49 @@
         width: 99%;
     }
 
-    #form{
+    #formulario{
         display: flex;
-        position: relative;
         flex-flow: column;
         flex-wrap: row wrap;
-        width: 250px;
         align-items: center;
         justify-content: center;
         background-color: orange;
-        height: 300px;
-        width: 400px;
-        border-radius: 20%;
-        margin-top: 50%;
+        height: 400px;
+        width: 500px;
+        border-radius: 10%;
     }
 
     .card{
+        background-color: beige;
+        height: 250px;
+        width: 250px;
+        border-radius: 10%;
+    }
+
+    #mensagem{
+        top: 200px;
+        left: 35%;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 400px;
+        width: 500px;
+    }
+
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        flex-wrap: row wrap;
+    }
+
+    button{
+        height: 40px;
+        width: 100px;
+        background-color: orange;
+        border-width: 1px;
         border-color: black;
-        height: 100px;
-        width: 200px;
     }
 
     </style>
@@ -44,21 +68,32 @@
     <div class="background">
         <img src="https://i.postimg.cc/fTkKghpJ/background.jpg" id="background">
     </div>
+
+    <div style="display: flex; justify-content: center; align-items: center; background-color: orange; position: relative;  left: 27%; height: 100px; width: 800px; background-color: orange; top: 100px;">
+<div style="justify-content: center; align-items: center; padding: 30px;">
+            <h4>Bem vindo ao Mantimentos Store! Preeencha os campos abaixo para realizar seu cadastro, ou vá direto para a página de login clicando no botão abaixo!</h4>
+</div>
+        </div>
     <div id="mensagem">
-<p>Bem vindo</p>
-    </div>
-        <div id="form">
-            <h2>Cadastro</h2>
+
+    
+        <div id="formulario">
+            <h1>Cadastro</h1>
             <form class="card" action="/cadastro" method="POST">
                 <label for="usuario">Usuário:</label>
                 <input type="text" id="usuario" name="username" autocomplete="off">
+                <br><br>
                 <label for="password">Senha:</label>
                 <input type="password" id="password" name="password" autocomplete="off">
                 <br>
                 <br>
+                <div style="display: flex; flex-flow: row; gap: 10px;">
                 <button type="submit">Cadastro</button>
+                <button type="submit" location="login.html">Login</button>
+                </div>
             </form>
         </div>
+    </div>
 </body>
 </html>
 

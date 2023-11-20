@@ -26,15 +26,42 @@
         align-items: center;
         justify-content: center;
         background-color: orange;
-        height: 300px;
-        width: 400px;
-        border-radius: 20%;
+        height: 400px;
+        width: 500px;
+        border-radius: 10%;
     }
 
     .card{
+        background-color: beige;
+        height: 250px;
+        width: 250px;
+        border-radius: 10%;
+    }
+
+    button{
+        height: 40px;
+        width: 100px;
+        background-color: orange;
+        border-width: 1px;
         border-color: black;
-        height: 100px;
-        width: 200px;
+    }
+
+    form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-flow: column;
+        flex-wrap: row wrap;
+    }
+
+    #mensagem{
+        top: 200px;
+left:35%;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        height: 400px;
+        width: 500px;
     }
 
     </style>
@@ -43,15 +70,14 @@
     <div class="background">
         <img src="https://i.postimg.cc/fTkKghpJ/background.jpg" id="background">
     </div>
-    <div style="display: flex; justify-content: center; align-items: center;">
-        <div style="background-color: orange; ">
-            <p>Bem vindo ao mantimentos store! Preeencha os campos abaixo para realizar seu login e clique no botão......</p>
-        </div>
+
+    <div id="mensagem">
     <div class="form">
-        <h2>Login</h2>
+        <h1>Login</h1>
         <form class="card" action="/login" method="POST">
             <label for="usuario">Usuário:</label>
             <input type="text" id="usuario" name="username" autocomplete="off">
+            <br><br>
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" autocomplete="off">
             <br>
@@ -60,6 +86,7 @@
         </form>
     </form>  
     </div>
+</div>
 </div>
 </body>
 </html>
