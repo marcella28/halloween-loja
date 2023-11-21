@@ -313,7 +313,7 @@
     #zombie{
         cursor: pointer;
         position: relative;
-        top: 580px;
+        top: 590px;
         left: 799px ;
         height: 90px;
         width: 50px;
@@ -322,7 +322,7 @@
     #frank{
         cursor: pointer;
         position: relative;
-        top: 320px;
+        top: 330px;
         left: 460px ;
         height: 90px;
         width: 50px;
@@ -332,7 +332,7 @@
     #esp{
         cursor: pointer;
         position: relative;
-        top: 200px;
+        top: 210px;
         left: 720px ;
         height: 90px;
         width: 50px;
@@ -342,7 +342,7 @@
     #lobo{
         cursor: pointer;
         position: relative;
-        top: 70px;
+        top: 90px;
         left: 560px ;
         height: 90px;
         width: 70px;
@@ -352,7 +352,7 @@
     #morte{
         cursor: pointer;
         position: relative;
-        top: 440px;
+        top: 480px;
         left: 420px ;
         height: 90px;
         width: 70px;
@@ -360,9 +360,9 @@
     }
 
     #um, #dois, #tres, #quatro,#cinco {
-        height: 90px;
-        width: 50px;
-        display: block;
+        height: 95px;
+        width: 55px;
+        display: none;
     }
 
     .nomeuser{
@@ -372,10 +372,14 @@
          border-style: groove ;
          border-width: 5px;
          border-color: rgb(235, 135, 88); 
-         height: 100px;
-         top: 80px ;
+         height: 60px;
+         top: 80px;
          left: 200px;
          width: 500px;
+    padding-right: auto;
+    padding-left: 10px;
+    padding-top: 3px;
+    padding-bottom: 8px;
 
     }
 
@@ -390,7 +394,7 @@
          height: 300px;
          flex-flow: column;
          top: 80px ;
-         right: 1690px;
+         right: 1600px;
     }
 
 img{
@@ -401,6 +405,10 @@ img{
 
 img.diminuida{
     opacity: 0.7;
+}
+
+#usernamePlaceholder{
+    color: white;
 }
     </style>
 
@@ -439,6 +447,10 @@ img.diminuida{
             // Exibe os pontos nos elementos HTML
             document.getElementById('pontos').textContent = points;
         }
+        function updateCashbackLocally(cashback) {
+            // Adiciona ou atualiza o cashback no localStorage
+            localStorage.setItem('userCashback', cashback);
+        }
 
         function onMonsterClick(imageId) {
             fetch('/addPoints', {
@@ -459,11 +471,17 @@ img.diminuida{
                     const newPoints = parseInt(localStorage.getItem('userPoints') || 0) + 10;
                     updateScoreLocally(newPoints);
 
+                    // Adiciona 5 em cashback localmente
+                    const newCashback = parseFloat(localStorage.getItem('userCashback') || 0) + 5;
+                    updateCashbackLocally(newCashback);
+
                     // Atualiza os elementos HTML com as informações dos pontos e cashback
-                    document.getElementById('cashback').textContent = data.cashback.toFixed(2);
+                    document.getElementById('cashback').textContent = newCashback.toFixed(2); // Corrigido aqui
                 })
                 .catch(error => console.error('Erro ao adicionar pontos:', error));
         }
+        
+      
 
             function getPointsAndCashback() {
                 fetch('/getPointsAndCashback', {
@@ -510,7 +528,9 @@ img.diminuida{
         // Se estiver visível, oculta
         imagem.style.display = "none";
     }
+
 }
+
 function adicionarPontos() {
     // Verifica se há algum valor armazenado para os pontos
     var pontosArmazenados = localStorage.getItem('pontos');
@@ -524,33 +544,46 @@ function adicionarPontos() {
     // Atualiza o valor dos pontos no HTML
     document.getElementById('pontos').innerText = pontosAtuais;
 
+
     // Armazena o novo valor no Local Storage
     localStorage.setItem('pontos', pontosAtuais.toString());
-  }
+    
+}
 
 
+function esconderimagem(){
+    var imagem2 = document.getElementById(id); 
+    if (imagem.style.display === "block"){
+        imagem.style.display = "none";
+    }
+}
+
+  
 </script>
 
 </head>
 <body style="background-color: black">
     <div class="background">
-        <img src="https://i.postimg.cc/fTkKghpJ/background.jpg" id="background">
+        <img src="https://i.postimg.cc/1znCJjNj/4233872.jpg" id="background">
     </div>
 
 <div class="tudo" style="display: flex; width: 295px;">
 <div class="nomeuser">
-    <div style="padding: 6px; align-items: center; justify-content: center; display: flex; flex-flow: row;">
-        <br>
-        <p id="user">Nome do Usuário: <span id="usernamePlaceholder"></span></p>
-        <br>
-    <br>
+    <div style="padding: 10px; align-items: center; justify-content: center; display: flex; flex-flow: row; height: auto; gap: 10px;">
+<div style="height: auto; width: 180px; padding: auto; ">
+        <p id="user" style="font-size: 23px;"><b>Nome do Usuário: </b></p>
+    </div>
+        <span id="usernamePlaceholder" style="font-size: 23px;"></span>
+
     </div>
 </div>
 
 <div class="2">
-<div style="background-color: rgb(202, 113, 30); ; width: 500px; height: 100px; position: relative; justify-content: center; align-items: center; top: 10px; left: 390px;">
-    <div style="display: flex; justify-content: center; align-items: center; padding: 10px; background-color: orange" >
-    <p>Encontre os monstrinhos de halloween escondidos em nossas prateleiras e ganhe pontos com isso! Os ponto serão convertidos em cashback depois! e então, doçuras ou travessuras? </p>
+<div style="background-color: rgb(202, 113, 30); ; width: 500px; height: 100px; position: relative; justify-content: center; align-items: center; top: 10px; left: 450px;">
+    <div style="display: flex; justify-content: center; align-items: center; padding: 10px; background-color: orange; border-style: groove ;
+    border-width: 5px;
+    border-color: rgb(235, 135, 88); "  >
+    <p>Encontre os monstrinhos de halloween escondidos em nossas prateleiras e ganhe pontos com isso! Os ponto serão convertidos em cashback depois! E então, doçuras ou travessuras? </p>
     </div>
 
 </div>
@@ -559,11 +592,11 @@ function adicionarPontos() {
         </div>
 
         <div class="monstros">
-            <img src="https://i.postimg.cc/5NGqtbkY/zombie.png" id="zombie" onclick=" diminuirOpacidade(this); adicionarPontos(); exibirImagem('um'); onMonsterClick('zombie');">
-            <img src="https://i.postimg.cc/Twm5TN3Z/esp.png" id="esp" onclick=" diminuirOpacidade(this); adicionarPontos(); exibirImagem('dois'); onMonsterClick('esp');">
-            <img src="https://i.postimg.cc/050rZwMd/frank.png" id="frank" onclick=" diminuirOpacidade(this); adicionarPontos(); exibirImagem('tres'); onMonsterClick('frank');" >
-            <img src="https://i.postimg.cc/rmvGJtDL/lobo.png" id="lobo" onclick="diminuirOpacidade(this); adicionarPontos(); exibirImagem('quatro'); onMonsterClick('lobo');">
-            <img src="https://i.postimg.cc/ryfNvS19/morte.png" id="morte" onclick=" diminuirOpacidade(this); adicionarPontos(); exibirImagem('cinco'); onMonsterClick('morte');" >
+            <img src="https://i.postimg.cc/5NGqtbkY/zombie.png" id="zombie" onclick="  diminuirOpacidade(this); adicionarPontos(); exibirImagem('um'); onMonsterClick('zombie'); esconderImagem('zombie');">
+            <img src="https://i.postimg.cc/Twm5TN3Z/esp.png" id="esp" onclick="  diminuirOpacidade(this); adicionarPontos(); exibirImagem('dois'); onMonsterClick('esp'); ">
+            <img src="https://i.postimg.cc/050rZwMd/frank.png" id="frank" onclick="  diminuirOpacidade(this); adicionarPontos(); exibirImagem('tres'); onMonsterClick('frank'); " >
+            <img src="https://i.postimg.cc/rmvGJtDL/lobo.png" id="lobo" onclick="  diminuirOpacidade(this); adicionarPontos(); exibirImagem('quatro'); onMonsterClick('lobo'); ">
+            <img src="https://i.postimg.cc/ryfNvS19/morte.png" id="morte" onclick="  diminuirOpacidade(this); adicionarPontos(); exibirImagem('cinco'); onMonsterClick('morte');" >
         </div>
 
     <div class="mantimentos">
